@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: Shop API
+  version: "2.0"
+paths:
+  /customers:
+    get:
+      summary: List customers
+      responses:
+        200:
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+    post:
+      summary: Create customer
+      responses:
+        "201":
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+  /orders:
+    get:
+      summary: List orders
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    order_id: {type: string}
+components:
+  schemas:
+    Customer:
+      type: object
+      required: [id, email, phone]
+      properties:
+        id: {type: string}
+        email: {type: string}
+        phone: {type: string}
